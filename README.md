@@ -1,7 +1,11 @@
-# Jarkom-Modul-1-E17-2021
+> ls
+> key="$(tail -1 bukanapaapa.txt)"
+> zip -P $key secret.zip Wanted.pdf
+> rm Wanted.pdf
+> history | tail -5 > history.txt# Jarkom-Modul-1-E17-2021
 
 ## Nomor 1
-_ 1. Sebutkan web server yang digunakan pada "ichimarumaru.tech"! _
+_1. Sebutkan web server yang digunakan pada "ichimarumaru.tech"!_
 
 Untuk mencari web server, terdapat pada HTTP header. Oleh karena itu, kita dapat memfilter semua paket yang berisi ichimarumaru.tech
 ![image](https://user-images.githubusercontent.com/49693862/134770746-fa8ae1e9-0569-4f3a-91bb-e4b9a05ab5bd.png)
@@ -10,32 +14,32 @@ Selanjutnya, pilih paket kemudia follow HTTP stream
 Dapat dilihat ichimarumaru.tech menggunakan web server nginx
 
 ## Nomor 2
-_ 2.Temukan paket dari web-web yang menggunakan basic authentication method! _
+_2.Temukan paket dari web-web yang menggunakan basic authentication method!_
 
 Untuk mencari paket dengan basic authentication method, dapat menggunakan display picture http.authbasic
 ![image](https://user-images.githubusercontent.com/49693862/134770800-8d6b02ee-e869-4172-a21f-faa4bcb6c761.png)
 Didapatkan paket-paket yang menggunakan basic authentication method
 
 ## Nomor 3
-_ 3. Ikuti perintah di basic.ichimarumaru.tech! Username dan password bisa didapatkan dari file .pcapng! _
+_3. Ikuti perintah di basic.ichimarumaru.tech! Username dan password bisa didapatkan dari file .pcapng!_
 
 Setelah mendapatkan paket yang menggunakan basic authentication, di headernya terdapat username dan password untuk basic.ichimarumaru.tech
 ![image](https://user-images.githubusercontent.com/49693862/134770846-a1b1580a-227f-4fd8-b163-53c2bee515b7.png)
 Di web basic.ichimarumaru.tech diminta urutan konfiguarasi pengkabelan T568A, dengan urutan terlampir pada gambar
 
 ## Nomor 4
-_ 4.Temukan paket mysql yang mengandung perintah query select! _
+_4.Temukan paket mysql yang mengandung perintah query select!_
 
 Untuk mencari diantara paket mysql dapat menggunakan filter mysql, kemudian karena ingin mencari paket dengan perintah select gunakan contains select
 ![image](https://user-images.githubusercontent.com/49693862/134771206-4e6fa6e2-fd41-4754-8156-5a1b41d89956.png)
 
-Dengan filter tersebut, perintah select dengan kapital tidak akan tertangkap, maka bisa menggunakan matches dengan regex ** mysql matches "select" **
+Dengan filter tersebut, perintah select dengan kapital tidak akan tertangkap, maka bisa menggunakan matches dengan regex** mysql matches "select"**
 ![image](https://user-images.githubusercontent.com/49693862/134771278-42acf1d1-1b2f-4396-8b10-68ad232920f0.png)
 
 ## Nomor 5
-_ 5.Login ke portal.ichimarumaru.tech kemudian ikuti perintahnya! Username dan password bisa didapat dari query insert pada table users dari file .pcap! __
+_5.Login ke portal.ichimarumaru.tech kemudian ikuti perintahnya! Username dan password bisa didapat dari query insert pada table users dari file .pcap!__
 
-Pertama, cari terlebih dahulu paket mysql yang mengandung insert dengan ** mysql matches "insert" **
+Pertama, cari terlebih dahulu paket mysql yang mengandung insert dengan** mysql matches "insert"**
 ![image](https://user-images.githubusercontent.com/49693862/134771315-37940d47-d3bc-4710-80db-41be8c2f6181.png)
 
 Pada frame terdapat query insert nya, didapatkan username dan password, lalu ke portal.ichimarumaru.tech. Ternyata diminta urutan konfigurasi pengkabelan T568B, dengan urutan seperti pada gambar
@@ -45,13 +49,13 @@ Kendala: awalnya berpikir bahwa passwordnya harus di MD5 terlebih dahulu, ternya
 
 
 ## Nomor 6
-_ 6.Cari username dan password ketika melakukan login ke FTP Server! _
+_6.Cari username dan password ketika melakukan login ke FTP Server!_
 
 Pertama, cari paket dengan protokol ftp dengan display filter ftp. Kemudian terlihat urutan paket, untuk username terdapat pada paket dengan USER. Untuk password terdapat paket dengan PASS.
 ![image](https://user-images.githubusercontent.com/49693862/134771370-ac7bda12-ddcd-4348-b079-214bd6b4c065.png)
 
 ## Nomor 7
-_ 7.Ada 500 file zip yang disimpan ke FTP Server dengan nama 0.zip, 1.zip, 2.zip, ..., 499.zip. Simpan dan Buka file pdf tersebut. (Hint = nama pdf-nya "Real.pdf") _
+_7.Ada 500 file zip yang disimpan ke FTP Server dengan nama 0.zip, 1.zip, 2.zip, ..., 499.zip. Simpan dan Buka file pdf tersebut. (Hint = nama pdf-nya "Real.pdf")_
 
 Pertama filter paket dimana pada frame terdapat Real.pdf, kemudian didapat dari ftp-data pada file 201.zip terdapat file Real.pdf. Follow TCP stream paket tersebut kemudian set as raw lalu download sebagai Real.pdf. Isi dari real pdf adalah sebagai berikut
 ![image](https://user-images.githubusercontent.com/49693862/134771662-9fed77ce-c760-4676-be12-59fcce22c223.png)
@@ -59,24 +63,24 @@ Pertama filter paket dimana pada frame terdapat Real.pdf, kemudian didapat dari 
 Kendala: awalnya berpikir tidak bisa menggunakan frame, karena data yang dikirim compressed sebagai zip. Namun setelah dicoba ternyata berhasil menemukan paket yang mengandung Real.pdf
 
 ## Nomor 8
-_ 8.Cari paket yang menunjukan pengambilan file dari FTP tersebut! _
+_8.Cari paket yang menunjukan pengambilan file dari FTP tersebut!_
 
-Untuk mencari paket yang mengambil file, gunakan display filter ** ftp.request.command  == "RETR"" **
+Untuk mencari paket yang mengambil file, gunakan display filter** ftp.request.command  == "RETR""**
 ![image](https://user-images.githubusercontent.com/49693862/134771706-34ebcd2c-0c41-426e-be95-34fa00aa1fc7.png)
 
 Kendala: berpikir bahwa salah karena hasil tidak ada, ternyata memang dari .pcapng nya tidak ada paket mengambil file.
 
 ## Nomor 9
-_ 9.Dari paket-paket yang menuju FTP terdapat inidkasi penyimpanan beberapa file. Salah satunya adalah sebuah file berisi data rahasia dengan nama "secret.zip". Simpan dan buka file tersebut! _
+_9.Dari paket-paket yang menuju FTP terdapat inidkasi penyimpanan beberapa file. Salah satunya adalah sebuah file berisi data rahasia dengan nama "secret.zip". Simpan dan buka file tersebut!_
 
-Untuk mencari paket ftp dengan nama file secret.zip, gunakan display filter ** ftp-data ** kemudian didapatkan paket secret.zip. Follow TCP Stream kemudian set as raw kemudian save sebagai secret.zip.
+Untuk mencari paket ftp dengan nama file secret.zip, gunakan display filter** ftp-data** kemudian didapatkan paket secret.zip. Follow TCP Stream kemudian set as raw kemudian save sebagai secret.zip.
 ![image](https://user-images.githubusercontent.com/49693862/134771749-52b9d0ce-2999-4fcf-b40d-ed61a4dd78ff.png)
 
 Isi dari secret.zip adalah Wanted.pdf
 ![image](https://user-images.githubusercontent.com/49693862/134771755-1c292f7d-e0ec-4d26-af62-c1364aef961b.png)
 
 ## Nomor 10
-_ 10.Selain itu terdapat "history.txt" yang kemungkinan berisi history bash server tersebut! Gunakan isi dari "history.txt" untuk menemukan password untuk membuka file rahasia yang ada di "secret.zip"! _
+_10.Selain itu terdapat "history.txt" yang kemungkinan berisi history bash server tersebut! Gunakan isi dari "history.txt" untuk menemukan password untuk membuka file rahasia yang ada di "secret.zip"!_
 
 Cari di ftp-data dengan nama file history.txt. Isi dari history txt adalah sebagai berikut
 > ls
@@ -85,7 +89,7 @@ Cari di ftp-data dengan nama file history.txt. Isi dari history txt adalah sebag
 > rm Wanted.pdf
 > history | tail -5 > history.txt
 
-Bisa dilihat, secret.zip menggunakan password dari variable key, yang merupakan output dari command ** tail -1 bukanapaapa.txt ** . Oleh karena itu, cari dulu file bukanapapa.txt dengan menulusuri ftp-data dan mencari file bukanapaapa.txt. Setelah didapatkan kemudian follow TCP stream dan set raw lalu save menjadi bukanapaapa.txt. Lalu jalankan ** tail -1 bukanapaapa.txt ** . 
+Bisa dilihat, secret.zip menggunakan password dari variable key, yang merupakan output dari command** tail -1 bukanapaapa.txt** . Oleh karena itu, cari dulu file bukanapapa.txt dengan menulusuri ftp-data dan mencari file bukanapaapa.txt. Setelah didapatkan kemudian follow TCP stream dan set raw lalu save menjadi bukanapaapa.txt. Lalu jalankan** tail -1 bukanapaapa.txt** . 
 ![image](https://user-images.githubusercontent.com/49693862/134771927-975c4157-9fbf-448b-97c1-6648197d76b5.png)
 Didapatkan outputnya adalah d1b1langbukanapaapajugagapercaya yang berarti adalah password dari secret.zip. Kemudian buka Wanted.pdf dengan password tersebut, didapatkan isi dari Wanted.pdf adalah poster One Piece.
 ![image](https://user-images.githubusercontent.com/49693862/134771957-64142156-c512-42c5-8399-b1ed8edeb4d4.png)
@@ -93,35 +97,35 @@ Didapatkan outputnya adalah d1b1langbukanapaapajugagapercaya yang berarti adalah
 > Nomor 11-15 menggunakan capture filter
 
 ## Nomor 11
-_ 11.Filter sehingga wireshark hanya mengambil paket yang berasal dari port 80! _
+_11.Filter sehingga wireshark hanya mengambil paket yang berasal dari port 80!_
 
-Menggunakan capture filter ** src port 80 ** . Berikut adalah hasilnya bila kita mengakses web http.
+Menggunakan capture filter** src port 80** . Berikut adalah hasilnya bila kita mengakses web http.
 ![image](https://user-images.githubusercontent.com/49693862/134772003-7c919c86-4581-4a8e-a2fb-0fccb9e939b2.png)
 
 ## Nomor 12
-_ 12.Filter sehingga wireshark hanya mengambil paket yang mengandung port 21! _
+_12.Filter sehingga wireshark hanya mengambil paket yang mengandung port 21!_
 
-Menggunakan capture filter ** port 21 ** . Berikut adalah hasilnya bila kita mengakses ftp. Bila kita mengakses ftp pada lokal, ganti interface ke Loopback karena akan mengakses IP kita.
+Menggunakan capture filter** port 21** . Berikut adalah hasilnya bila kita mengakses ftp. Bila kita mengakses ftp pada lokal, ganti interface ke Loopback karena akan mengakses IP kita.
 ![image](https://user-images.githubusercontent.com/49693862/134772017-1b6ff771-59ca-4a2a-a0f7-f8cd8bbabfc9.png)
 
 Kendala: lupa menggunakan loopback interface
 
 ## Nomor 13   
-_ 13.Filter sehingga wireshark hanya menampilkan paket yang menuju port 443! _
+_13.Filter sehingga wireshark hanya menampilkan paket yang menuju port 443!_
 
-Menggunakan capture filter ** dst port 443 ** . Berikut adalah hasilnya bila kita mengakses web https.
+Menggunakan capture filter** dst port 443** . Berikut adalah hasilnya bila kita mengakses web https.
 ![image](https://user-images.githubusercontent.com/49693862/134772042-fd4a68ae-d616-4cc9-8ba5-ffe60e16056a.png)
 
 ## Nomor 14
-_ 14.Filter sehingga wireshark hanya mengambil paket yang tujuannya ke kemenag.go.id! _
+_14.Filter sehingga wireshark hanya mengambil paket yang tujuannya ke kemenag.go.id!_
 
-Menggunakan capture filter ** dst kemenag.go.id ** . Berikut adalah hasilnya bila kita mengakses web kemenag.go.id
+Menggunakan capture filter** dst kemenag.go.id** . Berikut adalah hasilnya bila kita mengakses web kemenag.go.id
 ![image](https://user-images.githubusercontent.com/49693862/134772054-73f0622d-7341-4b1d-a39a-b7638b1b1a99.png)
 
 ## Nomor 15
-_ 15.Filter sehingga wireshark hanya mengambil paket yang berasal dari ip kalian! _
+_15.Filter sehingga wireshark hanya mengambil paket yang berasal dari ip kalian!_
 
-Cek ip dengan ifconfig, sesuaikan dengan interface. Kemudian gunakan capture filter ** src 192.168.1.109 **
+Cek ip dengan ifconfig, sesuaikan dengan interface. Kemudian gunakan capture filter** src 192.168.1.109**
 ![image](https://user-images.githubusercontent.com/49693862/134772076-2f67ed9d-f809-4246-8b12-813805bbcfdc.png)
 
 
