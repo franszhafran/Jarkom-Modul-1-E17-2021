@@ -121,6 +121,3 @@ _15.Filter sehingga wireshark hanya mengambil paket yang berasal dari ip kalian!
 
 Cek ip dengan ifconfig, sesuaikan dengan interface. Kemudian gunakan capture filter **src 192.168.1.109**<br />
 ![image](https://user-images.githubusercontent.com/49693862/134772076-2f67ed9d-f809-4246-8b12-813805bbcfdc.png)<br />
-
-
-
