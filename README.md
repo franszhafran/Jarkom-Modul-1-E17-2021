@@ -27,7 +27,7 @@ _4.Temukan paket mysql yang mengandung perintah query select!_
 Untuk mencari diantara paket mysql dapat menggunakan filter mysql, kemudian karena ingin mencari paket dengan perintah select gunakan contains select<br />
 ![image](https://user-images.githubusercontent.com/49693862/134771206-4e6fa6e2-fd41-4754-8156-5a1b41d89956.png)<br />
 
-Dengan filter tersebut, perintah select dengan kapital tidak akan tertangkap, maka bisa menggunakan matches dengan regex** mysql matches "select"** <br />
+Dengan filter tersebut, perintah select dengan kapital tidak akan tertangkap, maka bisa menggunakan matches dengan regex **mysql matches "select"** <br />
 ![image](https://user-images.githubusercontent.com/49693862/134771278-42acf1d1-1b2f-4396-8b10-68ad232920f0.png)<br />
 
 ## Nomor 5
