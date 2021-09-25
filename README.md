@@ -77,11 +77,11 @@ Isi dari secret.zip adalah Wanted.pdf <br />
 _10.Selain itu terdapat "history.txt" yang kemungkinan berisi history bash server tersebut! Gunakan isi dari "history.txt" untuk menemukan password untuk membuka file rahasia yang ada di "secret.zip"!_
 
 Cari di ftp-data dengan nama file history.txt. Isi dari history txt adalah sebagai berikut
-> ls
-> key="$(tail -1 bukanapaapa.txt)"
-> zip -P $key secret.zip Wanted.pdf
-> rm Wanted.pdf
-> history | tail -5 > history.txt
+> ls<br />
+> key="$(tail -1 bukanapaapa.txt)"<br />
+> zip -P $key secret.zip Wanted.pdf<br />
+> rm Wanted.pdf<br />
+> history | tail -5 > history.txt<br />
 
 Bisa dilihat, secret.zip menggunakan password dari variable key, yang merupakan output dari command **tail -1 bukanapaapa.txt** . Oleh karena itu, cari dulu file bukanapapa.txt dengan menulusuri ftp-data dan mencari file bukanapaapa.txt. Setelah didapatkan kemudian follow TCP stream dan set raw lalu save menjadi bukanapaapa.txt. Lalu jalankan **tail -1 bukanapaapa.txt**. <br />
 ![image](https://user-images.githubusercontent.com/49693862/134771927-975c4157-9fbf-448b-97c1-6648197d76b5.png)<br />
