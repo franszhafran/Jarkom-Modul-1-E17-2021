@@ -33,7 +33,7 @@ Dengan filter tersebut, perintah select dengan kapital tidak akan tertangkap, ma
 ## Nomor 5
 _5.Login ke portal.ichimarumaru.tech kemudian ikuti perintahnya! Username dan password bisa didapat dari query insert pada table users dari file .pcap!__
 
-Pertama, cari terlebih dahulu paket mysql yang mengandung insert dengan** mysql matches "insert"** <br />
+Pertama, cari terlebih dahulu paket mysql yang mengandung insert dengan **mysql matches "insert"** <br />
 ![image](https://user-images.githubusercontent.com/49693862/134771315-37940d47-d3bc-4710-80db-41be8c2f6181.png)<br />
 
 Pada frame terdapat query insert nya, didapatkan username dan password, lalu ke portal.ichimarumaru.tech. Ternyata diminta urutan konfigurasi pengkabelan T568B, dengan urutan seperti pada gambar<br />
@@ -59,7 +59,7 @@ Kendala: awalnya berpikir tidak bisa menggunakan frame, karena data yang dikirim
 ## Nomor 8
 _8.Cari paket yang menunjukan pengambilan file dari FTP tersebut!_
 
-Untuk mencari paket yang mengambil file, gunakan display filter** ftp.request.command  == "RETR""** <br />
+Untuk mencari paket yang mengambil file, gunakan display filter **ftp.request.command  == "RETR""** <br />
 ![image](https://user-images.githubusercontent.com/49693862/134771706-34ebcd2c-0c41-426e-be95-34fa00aa1fc7.png)<br />
 
 Kendala: berpikir bahwa salah karena hasil tidak ada, ternyata memang dari .pcapng nya tidak ada paket mengambil file.
@@ -67,7 +67,7 @@ Kendala: berpikir bahwa salah karena hasil tidak ada, ternyata memang dari .pcap
 ## Nomor 9
 _9.Dari paket-paket yang menuju FTP terdapat inidkasi penyimpanan beberapa file. Salah satunya adalah sebuah file berisi data rahasia dengan nama "secret.zip". Simpan dan buka file tersebut!_
 
-Untuk mencari paket ftp dengan nama file secret.zip, gunakan display filter** ftp-data** kemudian didapatkan paket secret.zip. Follow TCP Stream kemudian set as raw kemudian save sebagai secret.zip. <br />
+Untuk mencari paket ftp dengan nama file secret.zip, gunakan display filter **ftp-data** kemudian didapatkan paket secret.zip. Follow TCP Stream kemudian set as raw kemudian save sebagai secret.zip. <br />
 ![image](https://user-images.githubusercontent.com/49693862/134771749-52b9d0ce-2999-4fcf-b40d-ed61a4dd78ff.png)<br />
 
 Isi dari secret.zip adalah Wanted.pdf <br />
@@ -83,7 +83,7 @@ Cari di ftp-data dengan nama file history.txt. Isi dari history txt adalah sebag
 > rm Wanted.pdf
 > history | tail -5 > history.txt
 
-Bisa dilihat, secret.zip menggunakan password dari variable key, yang merupakan output dari command** tail -1 bukanapaapa.txt** . Oleh karena itu, cari dulu file bukanapapa.txt dengan menulusuri ftp-data dan mencari file bukanapaapa.txt. Setelah didapatkan kemudian follow TCP stream dan set raw lalu save menjadi bukanapaapa.txt. Lalu jalankan** tail -1 bukanapaapa.txt**. <br />
+Bisa dilihat, secret.zip menggunakan password dari variable key, yang merupakan output dari command **tail -1 bukanapaapa.txt** . Oleh karena itu, cari dulu file bukanapapa.txt dengan menulusuri ftp-data dan mencari file bukanapaapa.txt. Setelah didapatkan kemudian follow TCP stream dan set raw lalu save menjadi bukanapaapa.txt. Lalu jalankan **tail -1 bukanapaapa.txt**. <br />
 ![image](https://user-images.githubusercontent.com/49693862/134771927-975c4157-9fbf-448b-97c1-6648197d76b5.png)<br />
 Didapatkan outputnya adalah d1b1langbukanapaapajugagapercaya yang berarti adalah password dari secret.zip. Kemudian buka Wanted.pdf dengan password tersebut, didapatkan isi dari Wanted.pdf adalah poster One Piece.<br />
 ![image](https://user-images.githubusercontent.com/49693862/134771957-64142156-c512-42c5-8399-b1ed8edeb4d4.png)<br />
@@ -93,13 +93,13 @@ Didapatkan outputnya adalah d1b1langbukanapaapajugagapercaya yang berarti adalah
 ## Nomor 11
 _11.Filter sehingga wireshark hanya mengambil paket yang berasal dari port 80!_
 
-Menggunakan capture filter** src port 80** . Berikut adalah hasilnya bila kita mengakses web http.<br />
+Menggunakan capture filter **src port 80** . Berikut adalah hasilnya bila kita mengakses web http.<br />
 ![image](https://user-images.githubusercontent.com/49693862/134772003-7c919c86-4581-4a8e-a2fb-0fccb9e939b2.png)<br />
 
 ## Nomor 12
 _12.Filter sehingga wireshark hanya mengambil paket yang mengandung port 21!_
 
-Menggunakan capture filter** port 21** . Berikut adalah hasilnya bila kita mengakses ftp. Bila kita mengakses ftp pada lokal, ganti interface ke Loopback karena akan mengakses IP kita.<br />
+Menggunakan capture filter **port 21** . Berikut adalah hasilnya bila kita mengakses ftp. Bila kita mengakses ftp pada lokal, ganti interface ke Loopback karena akan mengakses IP kita.<br />
 ![image](https://user-images.githubusercontent.com/49693862/134772017-1b6ff771-59ca-4a2a-a0f7-f8cd8bbabfc9.png)<br />
 
 Kendala: lupa menggunakan loopback interface
@@ -107,19 +107,19 @@ Kendala: lupa menggunakan loopback interface
 ## Nomor 13   
 _13.Filter sehingga wireshark hanya menampilkan paket yang menuju port 443!_
 
-Menggunakan capture filter** dst port 443** . Berikut adalah hasilnya bila kita mengakses web https.<br />
+Menggunakan capture filter **dst port 443** . Berikut adalah hasilnya bila kita mengakses web https.<br />
 ![image](https://user-images.githubusercontent.com/49693862/134772042-fd4a68ae-d616-4cc9-8ba5-ffe60e16056a.png)<br />
 
 ## Nomor 14
 _14.Filter sehingga wireshark hanya mengambil paket yang tujuannya ke kemenag.go.id!_
 
-Menggunakan capture filter** dst kemenag.go.id** . Berikut adalah hasilnya bila kita mengakses web kemenag.go.id<br />
+Menggunakan capture filter **dst kemenag.go.id** . Berikut adalah hasilnya bila kita mengakses web kemenag.go.id<br />
 ![image](https://user-images.githubusercontent.com/49693862/134772054-73f0622d-7341-4b1d-a39a-b7638b1b1a99.png)<br />
 
 ## Nomor 15
 _15.Filter sehingga wireshark hanya mengambil paket yang berasal dari ip kalian!_
 
-Cek ip dengan ifconfig, sesuaikan dengan interface. Kemudian gunakan capture filter** src 192.168.1.109**<br />
+Cek ip dengan ifconfig, sesuaikan dengan interface. Kemudian gunakan capture filter **src 192.168.1.109**<br />
 ![image](https://user-images.githubusercontent.com/49693862/134772076-2f67ed9d-f809-4246-8b12-813805bbcfdc.png)<br />
 
 
