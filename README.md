@@ -59,7 +59,7 @@ Kendala: awalnya berpikir tidak bisa menggunakan frame, karena data yang dikirim
 ## Nomor 8
 _8.Cari paket yang menunjukan pengambilan file dari FTP tersebut!_
 
-Untuk mencari paket yang mengambil file, gunakan display filter **ftp.request.command  == "RETR""** <br />
+Untuk mencari paket yang mengambil file, gunakan display filter **ftp.request.command  == "RETR"** <br />
 ![image](https://user-images.githubusercontent.com/49693862/134771706-34ebcd2c-0c41-426e-be95-34fa00aa1fc7.png)<br />
 
 Kendala: berpikir bahwa salah karena hasil tidak ada, ternyata memang dari .pcapng nya tidak ada paket mengambil file.
