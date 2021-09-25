@@ -1,7 +1,7 @@
 ## Nomor 1
 _1. Sebutkan web server yang digunakan pada "ichimarumaru.tech"!_
 
-Untuk mencari web server, terdapat pada HTTP header. Oleh karena itu, kita dapat memfilter semua paket yang berisi ichimarumaru.tech
+Untuk mencari web server, terdapat pada HTTP header. Oleh karena itu, kita dapat memfilter semua paket yang berisi ichimarumaru.tech<br />
 ![image](https://user-images.githubusercontent.com/49693862/134770746-fa8ae1e9-0569-4f3a-91bb-e4b9a05ab5bd.png)<br />
 Selanjutnya, pilih paket kemudia follow HTTP stream<br />
 ![image](https://user-images.githubusercontent.com/49693862/134770760-9e8ad384-85e8-40e6-9345-b5982c306856.png)<br />
